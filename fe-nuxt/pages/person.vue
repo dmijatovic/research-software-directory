@@ -16,8 +16,8 @@ export default Vue.extend({
     ...mapState(['auth'])
   },
   mounted () {
-    console.log(this.$auth)
-    console.log(this.$store.state.auth)
+    console.log('store.state.auth...', this.auth)
+    // console.log(this.$store.state.auth)
   }
 })
 </script>

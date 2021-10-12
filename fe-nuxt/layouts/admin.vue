@@ -1,19 +1,24 @@
 <template>
   <v-app>
-    <Header />
-    <Nuxt />
+    <AdminSidebar />
+    <AdminHeader />
+    <v-main>
+      <Nuxt />
+    </v-main>
     <Footer />
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import Header from './Header.vue'
+import AdminHeader from './AdminHeader.vue'
+import AdminSidebar from './AdminSidebar.vue'
 import Footer from './Footer.vue'
 export default Vue.extend({
-  name: 'Default',
+  name: 'Admin',
   components: {
-    Header,
+    AdminSidebar,
+    AdminHeader,
     Footer
   }
 })

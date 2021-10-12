@@ -21,6 +21,16 @@ modules: [
 ],
 ```
 
+### Vuetify
+
+Based on [official documentation](https://github.com/nuxt-community/vuetify-module).
+
+```bash
+# install dependencies
+npm i vuetify
+npm i-D @nuxtjs/vuetify
+```
+
 ## Build Setup
 
 ```bash

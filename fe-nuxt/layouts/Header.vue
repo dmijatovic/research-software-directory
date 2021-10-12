@@ -17,6 +17,12 @@
       >
         Login
       </NuxtLink>
+      <NuxtLink
+        v-if="auth.loggedIn"
+        to="/admin"
+      >
+        Admin
+      </NuxtLink>
     </nav>
     <div v-if="auth.loggedIn" class="avatar">
       <img :src="auth.user.avatar_url" :alt="auth.user.name" :title="auth.user.name">
