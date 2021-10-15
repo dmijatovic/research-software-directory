@@ -32,6 +32,19 @@ source data-api/bin/activate             # activate environment
 pip install -r requirements.txt          # install python dependencies
 ```
 
+Note! If you do not have virtualenv you also use venv
+
+```bash
+# migth need to install
+apt install python3.8-venv
+# create virtual env
+python3 -m venv .venv
+# select
+source .venv/bin/activate
+# install
+pip install -r requirements.txt
+```
+
 ## Run
 
 Copy `rsd-secrets.env.example` to `.env` and check the values.
@@ -71,3 +84,4 @@ The Docker image can be built using
 ```shell
 docker build -t rsd/auth .
 ``
+```
