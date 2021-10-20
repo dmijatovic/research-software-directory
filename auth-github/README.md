@@ -32,7 +32,7 @@ source data-api/bin/activate             # activate environment
 pip install -r requirements.txt          # install python dependencies
 ```
 
-Note! If you do not have virtualenv you also use venv
+Note! If you do not have virtualenv you might need to install it and use it like this
 
 ```bash
 # migth need to install

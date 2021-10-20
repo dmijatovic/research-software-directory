@@ -25,12 +25,6 @@ app = application = Flask(__name__)
 url_prefix = os.environ.get('AUTH_ROOT', '')
 
 
-@app.route(url_prefix + '/', methods=["GET"])
-def _root():
-    return redirect('https://github.com/login/oauth/authorize/?client_id=%s' % os.environ.get('AUTH_GITHUB_CLIENT_ID'),
-                    code=302)
-
-
 def get_access_token(code):
     url = 'https://github.com/login/oauth/access_token?client_id=%s&client_secret=%s&code=%s&accept=json' % \
           (os.environ.get('AUTH_GITHUB_CLIENT_ID'), os.environ.get('AUTH_GITHUB_CLIENT_SECRET'), code)
@@ -79,6 +73,25 @@ class UserNotInOrganization(Exception):
                   )
 
 
+
+@app.route('/', methods=["GET"])
+def home():
+    z = 1 + 1
+    print (z)
+    return """
+        <h1>RSD Github authorisation module</h1>
+    """,200
+
+
+@app.route('/test', methods=["GET"])
+def test():
+    return 'Testing this!!!'
+
+# @app.route(url_prefix + '/', methods=["GET"])
+# def _root():
+#     return redirect('https://github.com/login/oauth/authorize/?client_id=%s' % os.environ.get('AUTH_GITHUB_CLIENT_ID'),
+#                     code=302)
+
 @app.route(url_prefix + '/get_jwt', methods=["GET"])
 def _login():
     try:
@@ -113,6 +126,7 @@ def _login():
                    .replace('{SUBTITLE}', str(e.__class__.__name__)) \
                    .replace('{MESSAGE}', str(e)) \
                    .replace('{AUTH_URL}', 'https://github.com/login/oauth/authorize/?client_id=%s' % os.environ.get('AUTH_GITHUB_CLIENT_ID')), 400
+
 
 
 if __name__ == "__main__":
