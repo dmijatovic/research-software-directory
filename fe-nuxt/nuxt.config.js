@@ -72,8 +72,19 @@ export default {
       // },
       google: {
         scheme: 'oauth2',
-        clientId: process.env.AUTH_GOOGLE_CLIENT_ID,
-        clientSecret: process.env.AUTH_GOOGLE_CLIENT_SECRET
+        clientId: process.env.AUTH_GOOGLE_CLIENT_ID || '72b409ee6e7b7f84e5b5',
+        scope: ['openid'],
+        endpoints: {
+          configuration: 'https://accounts.google.com/.well-known/openid-configuration'
+        }
+      },
+      orchid: {
+        scheme: 'oauth2',
+        clientId: process.env.AUTH_ORCID_CLIENT_ID || 'CLIENT_ID',
+        endpoints: {
+          configuration: 'https://accounts.google.com/.well-known/openid-configuration'
+        },
+        scope: 'openid'
       }
     }
   },

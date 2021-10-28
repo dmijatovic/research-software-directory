@@ -1,5 +1,13 @@
 # fe-nuxt
 
+## SSO ORCHID
+
+Login with orcid is based on the instructions on [this page](https://info.orcid.org/documentation/api-tutorials/api-tutorial-get-and-authenticated-orcid-id/#easy-faq-2731)
+
+Note! To test you can use sandbox version of orcid website. You do need to register to sanbox version too. I had problems with verifying the email.
+
+Note! On live website only https redirect urls are accepted
+
 ## Instalations
 
 ### Auth module

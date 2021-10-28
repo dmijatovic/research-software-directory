@@ -6,15 +6,15 @@
     <button @click="login">
       Login
     </button>
-    <button @click="github">
-      Github
-    </button>
-    <!-- <button @click="gitlab">
-      GitLab
-    </button> -->
-    <!-- <button @click="google">
-      Google
-    </button> -->
+
+    <div>
+      <v-btn @click="github">
+        Github
+      </v-btn>
+      <v-btn @click="google">
+        Google
+      </v-btn>
+    </div>
   </section>
 </template>
 
@@ -35,14 +35,20 @@ export default Vue.extend({
     github () {
       console.log('Github login')
       this.$auth.loginWith('github')
-    }
+    },
     // gitlab () {
     //   console.log('login with gitlab')
     // },
-    // google () {
-    //   console.log('login with google')
-    //   this.$auth.loginWith('google')
-    // }
+    google () {
+      console.log('login with google')
+      this.$auth.loginWith('google')
+    }
   }
 })
 </script>
+<style scoped>
+button{
+  width:50%;
+  margin:1rem auto;
+}
+</style>
