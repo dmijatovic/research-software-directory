@@ -14,6 +14,33 @@ npx tailwindcss init -p
 # extend config
 ```
 
+## NextAuth
+
+Using plugin nextauth.
+
+Definition for callback url [is here](https://next-auth.js.org/configuration/providers/oauth-provider)
+
+Basic format is: [origin]/api/auth/callback/[provider]
+
+```env
+# define base app url for nextauth
+NEXTAUTH_URL=http://localhost:3000
+```
+
+Add SessionProvider Context to App
+
+### Github
+
+With next auth we need to define webapp, as in [documentation](https://next-auth.js.org/providers/github)
+
+CallbackUrl: http://localhost:3000/api/auth/callback/github
+
+I did not select any permissions from the list
+I did selected that app can be installed with any account/user (at the bottom).
+
+Click save now you have clientId
+Generate token and save it
+
 ## Next
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

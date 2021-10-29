@@ -1,15 +1,15 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-// import styles from '../styles/Home.module.css'
-
 import Layout from '../components/Layout'
+import DummyArticle from '../components/DummyArticle'
 
 const Home: NextPage = () => {
   return (
    <Layout>
      <section>
-       What is this?
+       <h2>Home page</h2>
+       <DummyArticle textSide="left" />
+       <h3>More lorem here</h3>
+       <DummyArticle textSide="right" />
      </section>
    </Layout>
   )

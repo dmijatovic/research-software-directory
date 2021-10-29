@@ -1,22 +1,76 @@
+/*
+  @apply seem to only work if here
+*/
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* html,
+
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-} */
-
-a {
-  color: inherit;
-  text-decoration: none;
+  @apply font-sans;
 }
 
-* {
-  box-sizing: border-box;
+#__next{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  @apply bg-gray-100;
 }
 
+h1 {
+  @apply text-5xl text-gray-800;
+}
+
+h2 {
+  @apply text-3xl my-4;
+}
+
+h3 {
+  @apply text-2xl my-3;
+}
+
+h4 {
+  @apply text-xl my-2;
+}
+
+h5 {
+  @apply text-lg my-1;
+}
+
+h6 {
+  @apply text-base font-bold;
+}
+
+.header{
+  @apply bg-blue-400 px-8 py-1 flex justify-between items-center h-24;
+}
+
+.container{
+  @apply flex flex-grow flex-col px-8 py-2 md:container bg-white mx-auto;
+}
+
+.container-row{
+  @apply flex flex-grow flex-row px-8 py-2 md:container mx-auto;
+}
+
+
+.footer{
+  @apply text-xl bg-gray-600 text-gray-200 px-8 py-2;
+}
+
+.btn​ {
+  @apply​ rounded shadow-sm transition hover:shadow-none px-3 py-2;
+}
+
+.btn-icon {
+  @apply flex items-center;
+}
+
+.btn-gray {
+  @apply bg-gray-300 hover:bg-gray-400;
+}
+
+.btn-indigo {
+  @apply bg-indigo-300 hover:bg-indigo-400;
+}

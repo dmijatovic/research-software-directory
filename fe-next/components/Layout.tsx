@@ -1,23 +1,17 @@
-// import { Typography } from "@material-ui/core"
-// import { makeStyles } from '@material-ui/core/styles';
-
-// const useStyles = makeStyles((theme)=>({
-//   root: { }
-// }));
-
+import AppHeader from "./AppHeader"
 export default function Layout({children}) {
   // const styles = useStyles();
   return (
     <>
-    <header>
-      <h1>Header title</h1>
-    </header>
-    <main>
-      {children}
-    </main>
-    <footer>
-      <h4>Footer content</h4>
-    </footer>
+      <AppHeader />
+      <main className="container">
+        {children}
+      </main>
+      <footer className="footer">
+        <section className="container-row">
+          <h6>Footer content</h6>
+        </section>
+      </footer>
     </>
   )
 }
