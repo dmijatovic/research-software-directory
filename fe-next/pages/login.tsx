@@ -1,23 +1,26 @@
 import type { NextPage } from 'next'
-import {signIn, useSession} from 'next-auth/react'
+import { AppProviders } from 'next-auth/providers'
+import { signIn, getProviders, getSession } from 'next-auth/react'
 
 
 import Layout from '../components/Layout'
 
-const Login: NextPage = () => {
-  const {data,status} = useSession()
+const Login: NextPage = ({providers}:{providers:AppProviders}) => {
+  // const {data,status} = useSession()
 
+  // return list of defined providers
   function getContent(){
-    if (data && data.session){
-      return (
-        <pre>{JSON.stringify(data.session,null,2)}</pre>
-      )
-    }
-    return (
-      <button className="btn btn-indigo p-4 rounded" onClick={()=>signIn('github',{
-        callbackUrl:"http://localhost:3000/dashboard"
-      })} >SignIn with Github</button>
-    )
+    return Object.values(providers).map(provider=>(
+      <button
+        key={provider.id}
+        className="btn p-4 mr-4 rounded hover:bg-gray-300"
+        onClick={()=>signIn(provider.id,{
+          callbackUrl:"http://localhost:3000/dashboard"
+        })}
+      >
+        SignIn with {provider.name}
+      </button>
+    ))
   }
 
   return (
@@ -28,6 +31,23 @@ const Login: NextPage = () => {
       </section>
    </Layout>
   )
+}
+
+// Here we get a list of defined providers from nexth-auth api endpoint
+// if the user is logged in we redirect it to the dashboard page
+Login.getInitialProps = async(context)=>{
+  const {req,res} = context
+  const session = await getSession({req})
+
+  if(res && session && session.user){
+    res.writeHead(302,{Location:"/dashboard"})
+    res.end()
+  }
+  return {
+    session:undefined,
+    providers:await getProviders()
+  }
+
 }
 
 export default Login

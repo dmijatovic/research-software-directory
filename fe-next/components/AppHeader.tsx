@@ -19,9 +19,9 @@ export default function AppHeader(){
         </div>
       )
     }
-    // return (
-    //   <button onClick={()=>router.push("/login")}>Login</button>
-    // )
+    return (
+      <button onClick={()=>router.push("/login")}>Login</button>
+    )
   }
 
   return (
