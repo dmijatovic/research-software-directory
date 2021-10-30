@@ -4,11 +4,11 @@ export default function Layout({children}) {
   return (
     <>
       <AppHeader />
-      <main className="container">
+      <main className="container flex-col bg-white text-gray-800">
         {children}
       </main>
       <footer className="footer">
-        <section className="container-row">
+        <section className="container">
           <h6>Footer content</h6>
         </section>
       </footer>

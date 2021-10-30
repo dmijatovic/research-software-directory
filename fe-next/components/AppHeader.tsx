@@ -11,6 +11,7 @@ export default function AppHeader(){
       return (
         <div>
           <Avatar
+            classes="cursor-pointer"
             image={data?.user?.image}
             username={data?.user?.name}
           />
@@ -25,10 +26,10 @@ export default function AppHeader(){
 
   return (
     <header className="header">
-      <section className="container-row header">
+      <section className="container header-row text-gray-200">
         <h1>
           <Link href="/">
-            Header title
+            App title
           </Link>
         </h1>
         {getRightSideOptions()}

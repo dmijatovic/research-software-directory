@@ -18,41 +18,53 @@ body {
   @apply bg-gray-100;
 }
 
-h1 {
-  @apply text-5xl text-gray-800;
+@layer base {
+  h1 {
+    @apply text-5xl;
+  }
+
+  h2 {
+    @apply text-3xl my-4 text-primary-900;
+  }
+
+  h3 {
+    @apply text-2xl my-3 text-primary-900;
+  }
+
+  h4 {
+    @apply text-xl my-2 text-warning-600;
+  }
+
+  h5 {
+    @apply text-lg my-1;
+  }
+
+  h6 {
+    @apply text-base font-bold;
+  }
+
+  .header{
+    @apply flex justify-between items-center bg-primary-700 h-24;
+  }
+
+  .container{
+    @apply flex flex-grow px-8 py-2 mx-auto;
+  }
+
+  .header-row{
+    @apply justify-between items-center mx-auto py-1;
+  }
+
+  .card-centered{
+    @apply flex flex-col justify-center w-1/3 mx-auto p-8 m-16 border rounded;
+  }
+
+  .page-title{
+    @apply uppercase tracking-wide;
+  }
+
 }
 
-h2 {
-  @apply text-3xl my-4;
-}
-
-h3 {
-  @apply text-2xl my-3;
-}
-
-h4 {
-  @apply text-xl my-2;
-}
-
-h5 {
-  @apply text-lg my-1;
-}
-
-h6 {
-  @apply text-base font-bold;
-}
-
-.header{
-  @apply bg-blue-400 px-8 py-1 flex justify-between items-center h-24;
-}
-
-.container{
-  @apply flex flex-grow flex-col px-8 py-2 md:container bg-white mx-auto;
-}
-
-.container-row{
-  @apply flex flex-grow flex-row px-8 py-2 md:container mx-auto;
-}
 
 
 .footer{

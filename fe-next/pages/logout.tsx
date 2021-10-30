@@ -15,6 +15,16 @@ const Login: NextPage = () => {
     }
   })
 
+  if (data && data.user){
+    return (
+      <Layout>
+        <section className="card-centered">
+          Signing you out...
+        </section>
+      </Layout>
+    )
+  }
+
   function getContent(){
     if (data && data.user){
       return (
@@ -31,8 +41,8 @@ const Login: NextPage = () => {
 
   return (
    <Layout>
-      <h2>Logout</h2>
-      <section>
+      <section className="card-centered">
+        <h2>Logout</h2>
         {getContent()}
       </section>
    </Layout>

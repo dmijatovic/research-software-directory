@@ -1,10 +1,9 @@
 import { useEffect } from 'react'
 import type { NextPage } from 'next'
-import Link from 'next/link'
 import Layout from '../components/Layout'
 import {useSession, getSession, signIn} from 'next-auth/react'
 import router from 'next/router'
-import { Session } from 'next-auth'
+import PageHeader from '../components/PageHeader'
 
 const Dashboard: NextPage = () => {
   const {data,status} = useSession()
@@ -24,7 +23,9 @@ const Dashboard: NextPage = () => {
 
   return (
    <Layout>
-     <h2>Your dashboard</h2>
+     <PageHeader>
+      <h3 className="page-title">dashboard</h3>
+     </PageHeader>
      <section>
        {getContent()}
      </section>
