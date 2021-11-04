@@ -1,13 +1,11 @@
-import type { NextPage } from 'next'
 import { AppProviders } from 'next-auth/providers'
 import { signIn, getProviders, getSession } from 'next-auth/react'
 
 
 import Layout from '../components/Layout'
 
-const Login: NextPage = ({providers}:{providers:AppProviders}) => {
+const Login = ({providers}:{providers:AppProviders}) => {
   // const {data,status} = useSession()
-
   // return list of defined providers
   function getContent(){
     return Object.values(providers).map(provider=>(
