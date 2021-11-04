@@ -27,30 +27,6 @@ export default NextAuth({
       //   }
       // },
     }),
-    AzureADProvider({
-      // clientId: process.env.AUTH_EWAN_APP_CLIENT_ID,
-      clientId: process.env.AUTH_AZURE_AD_CLIENT_ID,
-      clientSecret: process.env.AUTH_AZURE_AD_CLIENT_SECRET,
-      tenantId: process.env.AUTH_AZURE_AD_TENANT_ID,
-      authorization: {
-        params: {
-          scope: "openid"
-        }
-      },
-      profile(profile) {
-        console.log("nextAuth.provider.AzureADProvider.profile...", profile)
-        return {
-          ...profile,
-          // ID is required by auth-next.client
-          // for ORCID we use sub which is base ORCID
-          id: profile.sub,
-          // we need to construct name
-          // name: `${profile?.given_name} ${profile?.family_name}`,
-          // // store orcid incl. website url
-          // orcid: `${profile?.iss}/${profile?.sub}`
-        }
-      }
-    }),
     // Gitlab not working properly yet
     // GitlabProvider({
     //   clientId: process.env.AUTH_GITLAB_CLIENT_ID,
@@ -86,7 +62,31 @@ export default NextAuth({
           orcid: `${profile?.iss}/${profile?.sub}`
         }
       }
-    },{
+    },
+    AzureADProvider({
+      // clientId: process.env.AUTH_EWAN_APP_CLIENT_ID,
+      clientId: process.env.AUTH_AZURE_AD_CLIENT_ID,
+      clientSecret: process.env.AUTH_AZURE_AD_CLIENT_SECRET,
+      tenantId: process.env.AUTH_AZURE_AD_TENANT_ID,
+      authorization: {
+        params: {
+          scope: "openid"
+        }
+      },
+      profile(profile) {
+        console.log("nextAuth.provider.AzureADProvider.profile...", profile)
+        return {
+          ...profile,
+          // ID is required by auth-next.client
+          // for ORCID we use sub which is base ORCID
+          id: profile.sub,
+          // we need to construct name
+          // name: `${profile?.given_name} ${profile?.family_name}`,
+          // // store orcid incl. website url
+          // orcid: `${profile?.iss}/${profile?.sub}`
+        }
+      }
+    }),{
       id: "azure",
       name: "AZURE",
       type: "oauth",
