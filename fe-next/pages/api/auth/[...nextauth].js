@@ -27,7 +27,15 @@ export default NextAuth({
       //   }
       // },
     }),
-    // Gitlab not working properly yet
+    AzureADProvider({
+      // HAS A BUG, see issue https://github.com/nextauthjs/next-auth/issues/3052
+      // it requires "openid-client": "^5.0.2",
+      // I manually updated node_modules
+      clientId: process.env.AUTH_AZURE_AD_CLIENT_ID,
+      clientSecret: process.env.AUTH_AZURE_AD_CLIENT_SECRET,
+      tenantId: process.env.AUTH_AZURE_AD_TENANT_ID,
+    }),
+    // Gitlab is not working properly yet
     // GitlabProvider({
     //   clientId: process.env.AUTH_GITLAB_CLIENT_ID,
     //   clientSecret: process.env.AUTH_GITLAB_CLIENT_SECRET,
@@ -51,86 +59,6 @@ export default NextAuth({
       clientSecret: process.env.AUTH_ORCID_CLIENT_SECRET,
       profile(profile) {
         console.log("nextAuth.provider.ORCID.profile...", profile)
-        return {
-          ...profile,
-          // ID is required by auth-next.client
-          // for ORCID we use sub which is base ORCID
-          id: profile.sub,
-          // we need to construct name
-          name: `${profile?.given_name} ${profile?.family_name}`,
-          // store orcid incl. website url
-          orcid: `${profile?.iss}/${profile?.sub}`
-        }
-      }
-    },
-    AzureADProvider({
-      // clientId: process.env.AUTH_EWAN_APP_CLIENT_ID,
-      clientId: process.env.AUTH_AZURE_AD_CLIENT_ID,
-      clientSecret: process.env.AUTH_AZURE_AD_CLIENT_SECRET,
-      tenantId: process.env.AUTH_AZURE_AD_TENANT_ID,
-      authorization: {
-        params: {
-          scope: "openid"
-        }
-      },
-      profile(profile) {
-        console.log("nextAuth.provider.AzureADProvider.profile...", profile)
-        return {
-          ...profile,
-          // ID is required by auth-next.client
-          // for ORCID we use sub which is base ORCID
-          id: profile.sub,
-          // we need to construct name
-          // name: `${profile?.given_name} ${profile?.family_name}`,
-          // // store orcid incl. website url
-          // orcid: `${profile?.iss}/${profile?.sub}`
-        }
-      }
-    }),{
-      id: "azure",
-      name: "AZURE",
-      type: "oauth",
-      wellKnown: "https://login.microsoftonline.com/0f22a838-ece9-49f4-b8dc-e71e2a5d705c/v2.0/.well-known/openid-configuration",
-      authorization: {
-        params: {
-          scope: "openid"
-        }
-      },
-      idToken: true,
-      checks: ["pkce", "state"],
-      clientId: process.env.AUTH_AZURE_AD_CLIENT_ID,
-      clientSecret: process.env.AUTH_AZURE_AD_CLIENT_SECRET,
-      tenantId: process.env.AUTH_AZURE_AD_TENANT_ID,
-      profile(profile) {
-        console.log("nextAuth.provider.AZURE.profile...", profile)
-        return {
-          ...profile,
-          // ID is required by auth-next.client
-          // for ORCID we use sub which is base ORCID
-          id: profile.sub,
-          // we need to construct name
-          name: `${profile?.given_name} ${profile?.family_name}`,
-          // store orcid incl. website url
-          orcid: `${profile?.iss}/${profile?.sub}`
-        }
-      }
-    },{
-      id: "ewan",
-      name: "EWAN_APP",
-      type: "oauth",
-      wellKnown: "https://login.microsoftonline.com/9188040d-6c67-4c5b-b112-36a304b66dad/v2.0/.well-known/openid-configuration",
-      authorization: {
-        params: {
-          scope: "openid"
-        }
-      },
-      idToken: true,
-      checks: ["pkce", "state"],
-      clientId: process.env.AUTH_EWAN_APP_CLIENT_ID,
-      // clientSecret: process.env.AUTH_AZURE_AD_CLIENT_SECRET,
-      // tenantId: process.env.AUTH_AZURE_AD_TENANT_ID,
-      profile(profile) {
-        console.log("nextAuth.provider.EWAN_APP.profile...", profile)
         return {
           ...profile,
           // ID is required by auth-next.client
