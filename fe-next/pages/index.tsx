@@ -7,7 +7,7 @@ const Home: NextPage = () => {
   return (
    <Layout>
      <PageHeader>
-      <h3 className="page-title">Home</h3>
+      <h1 className="page-title">Home</h1>
      </PageHeader>
      <section>
        <DummyArticle textSide="left" />

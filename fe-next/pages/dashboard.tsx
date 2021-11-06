@@ -25,7 +25,7 @@ const Dashboard: NextPage = () => {
   return (
    <Layout>
      <PageHeader>
-      <h3 className="page-title">dashboard</h3>
+      <h1 className="page-title">dashboard</h1>
       <nav>
         <Link href="/organization">
           <a className="p-4 rounded hover:bg-gray-200 hover:text-gray-700">

@@ -15,8 +15,17 @@ module.exports = {
     // extend default theme values
     extend: {
       colors: {
-        primary: colors.sky,
-        secondary: colors.violet,
+        primary: {
+          light: '#E5F5FB',
+          DEFAULT: "#009DDD",
+          dark: '#006d99'
+        },
+        // secondary: colors.violet,
+        secondary:{
+          light:'#834789',
+          DEFAULT: '#330837',
+          dark: '#200323'
+        },
         danger: colors.red,
         warning: colors.orange,
         success: colors.teal,

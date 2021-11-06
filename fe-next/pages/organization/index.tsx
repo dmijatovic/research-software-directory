@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import Layout from '../components/Layout'
-import PageHeader from '../components/PageHeader'
+import Link from 'next/link'
+import Layout from '../../components/Layout'
+import PageHeader from '../../components/PageHeader'
 import Select from 'react-select'
-import setDebounce from '../utils/debounce'
-import rorOptions from '../utils/rorOptions'
+import setDebounce from '../../utils/debounce'
+import rorOptions from '../../utils/rorOptions'
 
 const styles={
   minWidth:'6rem',
@@ -66,7 +67,14 @@ export default function Organization(){
   return (
     <Layout>
       <PageHeader>
-      <h3 className="page-title">organization</h3>
+        <h1 className="page-title">organization</h1>
+        <nav>
+        <Link href="/software">
+          <a className="p-4 rounded hover:bg-gray-200 hover:text-gray-700">
+            Software
+          </a>
+        </Link>
+      </nav>
       </PageHeader>
       <section>
         {/* <h4>Select organization</h4> */}

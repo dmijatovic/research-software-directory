@@ -1,8 +1,7 @@
 import { AppProviders } from 'next-auth/providers'
 import { signIn, getProviders, getSession } from 'next-auth/react'
-
-
 import Layout from '../components/Layout'
+import PageHeader from '../components/PageHeader'
 
 const Login = ({providers}:{providers:AppProviders}) => {
   // const {data,status} = useSession()
@@ -23,7 +22,9 @@ const Login = ({providers}:{providers:AppProviders}) => {
 
   return (
    <Layout>
-      <h2>Login</h2>
+      <PageHeader>
+        <h1 className="page-title">Login</h1>
+      </PageHeader>
       <section>
         {getContent()}
       </section>

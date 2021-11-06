@@ -42,7 +42,7 @@ const Login: NextPage = () => {
   return (
    <Layout>
       <section className="card-centered">
-        <h2>Logout</h2>
+        <h1>Logout</h1>
         {getContent()}
       </section>
    </Layout>

@@ -9,7 +9,7 @@ export default function Layout({children}) {
       </main>
       <footer className="footer">
         <section className="container">
-          <h6>Footer content</h6>
+          <div>Footer content</div>
         </section>
       </footer>
     </>

@@ -11,7 +11,7 @@ export default function Profile(){
     <Protected>
       <Layout>
         <PageHeader>
-          <h3 className="page-title">Profile</h3>
+          <h1 className="page-title">Profile</h1>
           <nav>
             <Link href="/dashboard">
               <a className="p-4 rounded hover:bg-gray-200 hover:text-gray-700">

@@ -2,7 +2,7 @@
 
 export default function PageHeader({children}){
   return(
-    <section className="flex items-center justify-between border-b mb-6">
+    <section className="page-header">
       {children}
     </section>
   )
