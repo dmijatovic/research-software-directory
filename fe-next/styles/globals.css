@@ -86,3 +86,8 @@ body {
 .btn-indigo {
   @apply bg-indigo-300 hover:bg-indigo-400;
 }
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}

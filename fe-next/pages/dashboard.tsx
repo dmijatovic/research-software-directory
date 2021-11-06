@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import type { NextPage } from 'next'
+import Link from 'next/link'
 import Layout from '../components/Layout'
-import {useSession, getSession, signIn} from 'next-auth/react'
+import {useSession, getSession} from 'next-auth/react'
 import router from 'next/router'
 import PageHeader from '../components/PageHeader'
 
@@ -25,6 +26,13 @@ const Dashboard: NextPage = () => {
    <Layout>
      <PageHeader>
       <h3 className="page-title">dashboard</h3>
+      <nav>
+        <Link href="/organization">
+          <a className="p-4 rounded hover:bg-gray-200 hover:text-gray-700">
+            Organization
+          </a>
+        </Link>
+      </nav>
      </PageHeader>
      <section>
        {getContent()}

@@ -1,65 +1,66 @@
 import { useState, useEffect } from 'react'
 import Layout from '../components/Layout'
 import PageHeader from '../components/PageHeader'
-import AsyncSelect from 'react-select/async'
-
+import Select from 'react-select'
+import setDebounce from '../utils/debounce'
+import rorOptions from '../utils/rorOptions'
 
 const styles={
   minWidth:'6rem',
   maxWidth:'30rem'
 }
 
+const debounce = setDebounce(500)
+
 export default function Organization(){
-  // const [search,setSearch] = useDebounce("", 500)
-  const [state,setState]=useState({
+  const [searchInput,setSearchInput] = useState("")
+  const [organization,setOrganization] = useState()
+  const [options,setOptions] = useState({
     loading:false,
-    options:[]
+    items:[]
   })
 
-  async function getOrganization(search:string){
-    try{
-      // exit if we still loading
-      if (state.loading===true) return
-      // clear if no search
-      if (search==="") {
-        setState({
-          loading:false,
-          options:[]
-        })
-        return
-      }
-      setState({
-        loading:true,
-        options: state.options
-      })
-      // make request
-      const resp = await fetch(`https://api.ror.org/organizations?query=${search}`)
-      const rawOptions = await resp.json()
-      console.log("rawOptions...", rawOptions)
-      // debugger
-      const options = rawOptions.items.map(item=>{
-        // debugger
-        return {
-          value: item.id,
-          label: item.name
-        }
-      })
-      // return state
-      setState({
-        loading:false,
-        options
-      })
+  console.group("Organization...")
+  console.log("loading...",options.loading)
+  console.log("options...",options.items)
+  console.log("searchInput...",searchInput)
+  console.groupEnd()
 
-      return options
-    }catch(e){
-      console.error("Failed to get organizations:", e.message)
-      setState({
-        loading:false,
-        options:[]
+  useEffect(()=>{
+    // debugger
+    if (searchInput!==""){
+      setOptions({
+        loading:true,
+        items:[]
       })
+      rorOptions(searchInput)
+        .then(items=>{
+          setOptions({
+            loading:false,
+            items
+          })
+        })
+    }
+  },[searchInput])
+
+  function onInputChange(newValue:string){
+    // console.log("onInputChange...", newValue)
+    // set loading
+    if (newValue==="") {
+      setOptions({
+        loading:false,
+        items:[]
+      })
+    } else{
+      // set loading - keep items
+      setOptions({
+        loading:true,
+        items: options.items
+      })
+      // debounce input value
+      debounce(newValue,setSearchInput)
     }
   }
-
   // console.log("state...", state)
 
   return (
@@ -70,14 +71,37 @@ export default function Organization(){
       <section>
         {/* <h4>Select organization</h4> */}
         <div className="max-w-xl">
-          <AsyncSelect
-            cacheOptions
-            isLoading={state.loading}
+          <Select
+            //required for Next SSR
+            instanceId="organization"
+            name="organization"
+            placeholder="Type organization name"
+            autoFocus={true}
+            isLoading={options.loading}
             isClearable={true}
-            defaultOptions={state.options}
-            loadOptions={getOrganization}
+            isSearchable={true}
+            onInputChange={onInputChange}
+            onChange={(newValue)=>{
+              // console.log("Item selected...", newValue)
+              setOrganization(newValue?.data)
+            }}
+            options = {options.items}
+            loadingMessage={({inputValue})=>{
+              return (
+                <span>Searching ROR for <strong>{inputValue}</strong></span>
+              )
+            }}
+            filterOption={(option, inputValue)=>{return true;}}
+            // loadOptions={getOrganization}
           />
         </div>
+        {organization ?
+          <div>
+            <h4>Selected organization</h4>
+            <pre>{JSON.stringify(organization,null,2)}</pre>
+          </div>
+          : null
+        }
       </section>
     </Layout>
   )
