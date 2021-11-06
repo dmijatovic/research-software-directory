@@ -10,7 +10,7 @@ export default function SoftwarePage(){
         <h1 className="page-title">Project Page</h1>
       </PageHeader>
       <section>
-        Project id: {router.query['sid']}
+        Project id: {router.query['pid']}
       </section>
     </Layout>
   )

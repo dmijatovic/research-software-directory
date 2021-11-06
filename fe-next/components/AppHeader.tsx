@@ -27,14 +27,14 @@ export default function AppHeader(){
         if (item.status === status){
           return (
             <Link key={item.path} href={item.path}>
-              <a className={router.pathname===item.path ? "active p-4":"p-4"}>{item.label}</a>
+              <a className={router.pathname===item.path ? "active":""}>{item.label}</a>
             </Link>
           )
         }
       }else{
         return (
-          <Link key={item.path} href={item.path}>
-            <a className={router.pathname===item.path ? "active p-4":"p-4"}>{item.label}</a>
+          <Link key={item.path} href={item.path} passHref>
+            <a className={router.pathname===item.path ? "active":""}>{item.label}</a>
           </Link>
         )
       }

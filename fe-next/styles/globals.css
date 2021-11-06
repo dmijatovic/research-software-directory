@@ -7,10 +7,6 @@
 @tailwind utilities;
 
 
-body {
-  @apply font-sans;
-}
-
 #__next{
   display: flex;
   flex-direction: column;
@@ -60,20 +56,30 @@ body {
   }
 
   .page-title{
-    @apply uppercase text-primary;
-  }
-  .page-title{
-    letter-spacing:0.125rem;
-    font-weight:300;
-    padding: 0.5rem 0rem;
+    @apply text-primary;
   }
   .page-header{
     @apply flex items-center justify-between mb-6 border-b;
   }
   .card{
-    @apply w-4/12 px-8 py-4 border rounded hover:shadow-lg
+    @apply px-8 py-4 border rounded hover:shadow-lg
+  }
+
+  .card-title{
+    @apply text-primary-dark cursor-pointer whitespace-nowrap overflow-ellipsis overflow-hidden;
+  }
+
+  .card-subtitle{
+    @apply text-warning-500 cursor-pointer whitespace-nowrap overflow-ellipsis overflow-hidden;
   }
 }
+
+
+body{
+  min-width: 39rem;
+  font-family: 'Roboto', 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
 
 .footer{
   @apply font-thin bg-secondary-dark text-warning-50 px-8 py-2;
@@ -102,7 +108,7 @@ pre {
 
 .header{
   min-height: 6rem;
-  padding: 0.5rem 0rem;  
+  padding: 0.5rem 0rem;
 }
 
 h1{
@@ -133,9 +139,39 @@ h1{
 }
 
 nav a.active{
-  border-bottom: 2px solid var(--text-warning-600,#FFB213);
+  border-bottom: 4px solid var(--text-warning-600,#FFB213);
 }
 
 nav a{
-  border-bottom: 2px solid transparent;
+  min-width: 7rem;
+  text-align: center;
+  padding: 0.25rem;
+  margin: 0rem 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25rem;
+  font-weight: 500;
+  font-size: 1rem;
+  border-bottom: 4px solid transparent;
+}
+
+@media screen and (max-width: 640px) {
+  nav a{
+    min-width: 5rem;
+    margin: 0rem 0.25rem;
+  }
+}
+
+.page-title{
+  font-family: 'Fruktur', cursive;
+  letter-spacing:0.125rem;
+  font-weight:300;
+  padding: 0.5rem 0rem;
+}
+
+.card{
+  overflow: overlay;
+}
+
+.card-title{
+  font-family: 'Fruktur', cursive;
 }

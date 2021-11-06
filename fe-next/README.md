@@ -61,6 +61,30 @@ CallBackUrl: http://localhost:3000/api/auth/callback/orcid`
   - use google object as example, name service orcid
   - use well-known url: "https://orcid.org/.well-known/openid-configuration", [I found this info here](https://github.com/ORCID/ORCID-Source/blob/master/orcid-web/ORCID_AUTH_WITH_OPENID_CONNECT.md), at the bottom of the page.
 
+## SEO
+
+### Robots.txt
+
+Just add robots.txt file to public folder. The official documentation [has an example](https://nextjs.org/learn/seo/crawling-and-indexing/robots-txt).
+
+### Sitemap.xml
+
+Create sitemap.xml.tsx in the page folder use getServerSideProps to generate xml file.
+Official documentation [has an example](https://nextjs.org/learn/seo/crawling-and-indexing/xml-sitemaps).
+
+### JSON LD
+
+For adding JSON-LD into the head of the page [example can be found here](https://nextjs.org/learn/seo/rendering-and-ranking/metadata)
+
+```tsx
+// part of the Head component
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={addProductJsonLd()}
+  key="software-jsonld"
+/>
+```
+
 ## Next
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
