@@ -24,7 +24,7 @@ export function breadcrumbList({id,name}:{id:string,name:string}){
         "position": 3,
         "item": {
           "@id": "https://www.research-software.nl/software/${id}",
-          "name": name
+          "name": "${name}"
         }
       }]
     }`

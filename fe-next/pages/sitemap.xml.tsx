@@ -1,4 +1,4 @@
-const EXTERNAL_DATA_URL = 'https://www.research-software.nl/api/software?'
+const EXTERNAL_DATA_URL = 'https://www.research-software.nl/api/software'
 const BASE_URL="https://www.research-software.nl"
 
 function generateSiteMap(items) {
