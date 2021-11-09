@@ -33,7 +33,9 @@ export default NextAuth({
       // I manually updated node_modules
       clientId: process.env.AUTH_AZURE_AD_CLIENT_ID,
       clientSecret: process.env.AUTH_AZURE_AD_CLIENT_SECRET,
-      tenantId: process.env.AUTH_AZURE_AD_TENANT_ID,
+      // When using tenantId it will require MS user to be
+      // added to that tenant (possibility to assign roles)
+      // tenantId: process.env.AUTH_AZURE_AD_TENANT_ID,
     }),
     // Gitlab is not working properly yet
     // GitlabProvider({
