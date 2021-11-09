@@ -95,12 +95,13 @@ export default NextAuth({
         return {
           ...profile,
           // ID is required by auth-next.client
-          // for SURFconext we use sub which is base SURFconext
+          // for SURFconext we use sub which is unique
+          // identifier for users + app instance
           id: profile.sub,
           // we need to construct name
           name: `${profile?.given_name} ${profile?.family_name}`,
-          // store orcid incl. website url
-          orcid: `${profile?.iss}/${profile?.sub}`
+          // store orcid if provided
+          orcid: profile?.eduperson_orcid ?? null
         }
       }
     }
@@ -120,8 +121,6 @@ export default NextAuth({
       const { token, account, user, profile } = props
 
       console.log("nextAuth.callbacks.jwt...props...", props)
-      console.log("nextAuth.callbacks.jwt...token...", token)
-      console.log("nextAuth.callbacks.jwt...account...", account)
 
       // here we need to extract information and store it
       // into new token. This token is used in session
@@ -146,8 +145,8 @@ export default NextAuth({
     async session(props) {
       const {session,token} = props
       console.log("nextAuth.callbacks.session...props...", props)
-      console.log("nextAuth.callbacks.session...session...", session)
-      console.log("nextAuth.callbacks.session...token...", token)
+      // console.log("nextAuth.callbacks.session...session...", session)
+      // console.log("nextAuth.callbacks.session...token...", token)
       // console.log("nextAuth.callbacks.session...user...", user)
       if (session && session?.user && token){
         session.user = {
