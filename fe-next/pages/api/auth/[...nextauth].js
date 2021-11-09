@@ -69,6 +69,37 @@ export default NextAuth({
           // store orcid incl. website url
           orcid: `${profile?.iss}/${profile?.sub}`
         }
+      },
+    },
+    // ---------------------------------
+    // SURFconext oAuth2 + OICD provider
+    // ---------------------------------
+    {
+      id: "surfconext",
+      name: "SURFconext",
+      type: "oauth",
+      wellKnown: "https://connect.test.surfconext.nl/.well-known/openid-configuration",
+      authorization: {
+        params: {
+          scope: "openid profile email"
+        }
+      },
+      idToken: true,
+      checks: ["pkce", "state"],
+      clientId: process.env.AUTH_SURFCONEXT_CLIENT_ID,
+      clientSecret: process.env.AUTH_SURFCONEXT_CLIENT_SECRET,
+      profile(profile) {
+        console.log("nextAuth.provider.SURFconext.profile...", profile)
+        return {
+          ...profile,
+          // ID is required by auth-next.client
+          // for SURFconext we use sub which is base SURFconext
+          id: profile.sub,
+          // we need to construct name
+          name: `${profile?.given_name} ${profile?.family_name}`,
+          // store orcid incl. website url
+          orcid: `${profile?.iss}/${profile?.sub}`
+        }
       }
     }
   ],
@@ -86,9 +117,9 @@ export default NextAuth({
       // Note! user seem to be constructed in the profile function of the provider
       const { token, account, user, profile } = props
 
-      // console.log("nextAuth.callbacks.jwt...props...", props)
-      // console.log("nextAuth.callbacks.jwt...token...", token)
-      // console.log("nextAuth.callbacks.jwt...account...", account)
+      console.log("nextAuth.callbacks.jwt...props...", props)
+      console.log("nextAuth.callbacks.jwt...token...", token)
+      console.log("nextAuth.callbacks.jwt...account...", account)
 
       // here we need to extract information and store it
       // into new token. This token is used in session
@@ -112,9 +143,9 @@ export default NextAuth({
     */
     async session(props) {
       const {session,token} = props
-      // console.log("nextAuth.callbacks.session...props...", props)
-      // console.log("nextAuth.callbacks.session...session...", session)
-      // console.log("nextAuth.callbacks.session...token...", token)
+      console.log("nextAuth.callbacks.session...props...", props)
+      console.log("nextAuth.callbacks.session...session...", session)
+      console.log("nextAuth.callbacks.session...token...", token)
       // console.log("nextAuth.callbacks.session...user...", user)
       if (session && session?.user && token){
         session.user = {
